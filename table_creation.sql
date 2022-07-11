@@ -1,0 +1,62 @@
+CREATE TABLE book
+(
+	Id BIGINT IDENTITY NOT NULL PRIMARY KEY, 
+    title VARCHAR(100) NOT NULL, 
+    author VARCHAR(50) NOT NULL, 
+    [year] SMALLINT NOT NULL, 
+    plot TEXT NULL, 
+    age_range TINYINT NULL,
+)
+
+CREATE TABLE genre
+(
+	Id SMALLINT IDENTITY NOT NULL PRIMARY KEY,
+	[name] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE book_genre
+(
+	book_id BIGINT NOT NULL, 
+    genre_id SMALLINT NOT NULL, 
+    CONSTRAINT FK_book_genre_book FOREIGN KEY (book_id) REFERENCES book,
+    CONSTRAINT FK_book_genre_genre FOREIGN KEY (genre_id) REFERENCES genre
+)
+
+CREATE TABLE condition
+(
+	Id INT IDENTITY NOT NULL PRIMARY KEY,
+	[name] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE [copy]
+(
+	Id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+	book_id BIGINT NOT NULL,
+	condition_id INT NOT NULL,
+	library_code INT NOT NULL,
+	publisher VARCHAR(50) NOT NULL,
+	[language] VARCHAR(20) NOT NULL,
+	isbn BIGINT NOT NULL,
+	pages SMALLINT NOT NULL
+	CONSTRAINT FK_copy_book FOREIGN KEY (book_id) REFERENCES book,
+    CONSTRAINT FK_copy_condition FOREIGN KEY (condition_id) REFERENCES condition
+)
+
+
+CREATE TABLE [user]
+(
+	Id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+	[name] VARCHAR(50) NOT NULL,
+	surname VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE lent
+(
+	Id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+	copy_id BIGINT NOT NULL,
+	[user_id] BIGINT NOT NULL,
+	[start] DATE NOT NULL,
+	[end] DATE NOT NULL,
+	CONSTRAINT FK_rent_copy FOREIGN KEY (copy_id) REFERENCES [copy],
+	CONSTRAINT FK_rent_user FOREIGN KEY ([user_id]) REFERENCES [user]
+)

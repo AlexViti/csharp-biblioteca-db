@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca_db
 {
-    internal class Rent
+    internal class Lent
     {
         public User User { get; internal set; }
         public Document Document { get; internal set; }
         public DateOnly From { get; internal set; }
         public DateOnly? To { get; set; }
 
-        public Rent(User user, Document document, DateOnly from)
+        public Lent(User user, Document document, DateOnly from)
         {
             User = user;
             Document = document;

@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca_db
 {
-    internal class User : Person
+    internal class User
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public long Phone { get; set; }
-        public List<Rent> Rents { get; }
+        public int Id { get; private set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
 
-        public User(string surname, string name, string email, string password, long phone) : base(surname, name)
+        public User(int id, string name, string surname)
         {
-            Email = email;
-            Password = password;
-            Phone = phone;
-            Rents = new List<Rent>();
+            Id = id;
+            Name = name;
+            Surname = surname;
         }
     }
 }
