@@ -5,7 +5,7 @@ CREATE TABLE book
     author VARCHAR(50) NOT NULL, 
     [year] SMALLINT NOT NULL, 
     plot TEXT NULL, 
-    age_range TINYINT NULL,
+    age_range VARCHAR(5) NULL,
 )
 
 CREATE TABLE genre
@@ -56,7 +56,7 @@ CREATE TABLE lent
 	copy_id BIGINT NOT NULL,
 	[user_id] BIGINT NOT NULL,
 	[start] DATE NOT NULL,
-	[end] DATE NOT NULL,
+	[end] DATE,
 	CONSTRAINT FK_rent_copy FOREIGN KEY (copy_id) REFERENCES [copy],
 	CONSTRAINT FK_rent_user FOREIGN KEY ([user_id]) REFERENCES [user]
 )
